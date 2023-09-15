@@ -17,7 +17,7 @@ const info = [
     },
     {  
         username : "ana" , 
-        age : 16123
+        age : 16
     },
   
 ]
