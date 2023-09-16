@@ -55,13 +55,17 @@ app.post('/users' , (req , res ) => {
 app.put('/users/:id' , (req, res) => {
 
     const { id } = req.params
+  
     const updateUser = req.body
      info = info.map( e => {
         if ( e.id === id){
+        
             return {...updateUser , id : e.id}
         }
         else return e
     } )
+
+    res.status(203).json({...updateUser, id : id})
 
 
 })
