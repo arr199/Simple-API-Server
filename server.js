@@ -54,19 +54,23 @@ app.post('/users' , (req , res ) => {
 
 app.put('/users/:id' , (req, res) => {
 
-    const { id } = req.params
+    if (info.some( e => e.id === id)  ){
+        const { id } = req.params
   
-    const updateUser = req.body
-     info = info.map( e => {
-        if ( e.id === id){
-        
-            return {...updateUser , id : e.id}
-        }
-        else return e
-    } )
-
-    res.status(203).json(info.filter( e => e.id === id))
-
+        const updateUser = req.body
+         info = info.map( e => {
+            if ( e.id === id){
+            
+                return {...updateUser , id : e.id}
+            }
+            else return e
+        } )
+    
+        res.status(203).json(info.filter( e => e.id === id))
+    
+    }
+    else res.status(200).json({message : "no user with this id"})
+   
 
 })
 
