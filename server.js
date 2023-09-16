@@ -1,6 +1,7 @@
 import express from "express"
 import cors from 'cors'
 import * as dotenv from "dotenv"
+import crypto from 'node:crypto'
 
 dotenv.config()
 const app = express()
@@ -32,6 +33,13 @@ app.get('/api/v1/prompt' , (req, res) => {
     res.header('Access-Control-Allow-Origin' , "*")
     res.status(201).json(info)
 }  )
+
+app.post('/api/v1/prompt' , (req , resp ) => {
+    const newUser = {...req.body , id : crypto.randomUUID}
+    info.push(req.body)
+
+})
+
 
 app.use( (req, res ) => {
     res.status(404).send("<h1>LEAVE ME ALONE , THERE IS NO PAGE HERE</h1>")
