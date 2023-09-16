@@ -23,6 +23,7 @@ const info = [
 
 
 
+
 // middleware
 app.use(cors())
 app.use(express.json())
@@ -42,9 +43,8 @@ app.get('/users/:id' , (req, res) => {
 
 
 app.post('/users' , (req , res ) => {
-    const newUser = req.body 
-    
-    info.push({...newUser,id : crypto.randomUUID()})
+    const newUser = {...req.body, id : crypto.randomUUID()} 
+    info.push(newUser)
     res.status(201).json(newUser)
 
 })
