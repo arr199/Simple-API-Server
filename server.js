@@ -35,6 +35,7 @@ app.get('/api/v1/prompt' , (req, res) => {
 }  )
 
 app.post('/api/v1/prompt' , (req , res ) => {
+    res.header('Access-Control-Allow-Origin' , "*")
     const newUser = req.body
     info.push(req.body)
     res.status(201).json(newUser)
