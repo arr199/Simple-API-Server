@@ -34,7 +34,7 @@ app.get('/api/v1/prompt' , (req, res) => {
     res.status(201).json(info)
 }  )
 
-app.post('/api/v1/prompt' , (req , resp ) => {
+app.post('/api/v1/prompt' , (req , res ) => {
     const newUser = {...req.body , id : crypto.randomUUID}
     info.push(req.body)
     res.status(201).json(newUser)
