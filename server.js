@@ -23,7 +23,7 @@ const info = [
 // middleware
 app.use(express.json())
 app.get('/' , ( req , res ) => {
-    res.header('Acces-Control-Allow-Origin , * ')
+    res.header('Acces-Control-Allow-Origin  ' , "*")
     res.send('Hello There')
 
 
