@@ -58,7 +58,7 @@ app.put('/users/:id' , (req, res) => {
     const updateUser = req.body
      info = info.map( e => {
         if ( e.id === id){
-            return {...e , ...updateUser}
+            return {...updateUser , id : e.id}
         }
         else return e
     } )
