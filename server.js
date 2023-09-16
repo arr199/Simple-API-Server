@@ -21,7 +21,10 @@ const info = [
     },
 ]
 
+
+
 // middleware
+app.use(cors())
 app.use(express.json())
 app.get('/' , ( req , res ) => {
     res.header('Access-Control-Allow-Origin' , "*")
