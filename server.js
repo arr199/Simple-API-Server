@@ -38,7 +38,9 @@ app.get('/users' , (req, res) => {
 }  )
 
 app.get('/users/:id' , (req, res) => {
-    res.status(201).json(info)
+    const { id } =  req.params
+    const user = [...info].filter( e => e.id === id)
+    res.status(201).json(user)
 }  )
 
 
