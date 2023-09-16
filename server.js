@@ -3,10 +3,11 @@ import cors from 'cors'
 import * as dotenv from "dotenv"
 import crypto from 'node:crypto'
 
+
 dotenv.config()
 const app = express()
 const PORT = process.env.PORT ?? 8080
-const info = [
+let info = [
     {  
         username : "lola" , 
         age : 22
@@ -48,6 +49,20 @@ app.post('/users' , (req , res ) => {
     const newUser = {...req.body, id : crypto.randomUUID()} 
     info.push(newUser)
     res.status(201).json(newUser)
+
+})
+
+.app.put('/users/:id' , (req, res) => {
+
+    const { id } = req.params
+    const updateUser = req.body
+     info = info.map( e => {
+        if ( e.id === id){
+            return {...info , ...updateUser}
+        }
+        else return e
+    } )
+
 
 })
 
