@@ -22,9 +22,6 @@ let info = [
     },
 ]
 
-
-
-
 // middleware
 app.use(cors())
 app.use(express.json())
@@ -41,7 +38,7 @@ app.get('/users' , (req, res) => {
 app.get('/users/:id' , (req, res) => {
     const { id } =  req.params
     const user = [...info].filter( e => e.id === id)
-    res.status(201).json(user)
+    res.status(200).json(user)
 }  )
 
 
@@ -66,8 +63,7 @@ app.put('/users/:id' , (req, res) => {
             else return e
         } )
     
-        res.status(203).json(info.filter( e => e.id === id))
-    
+        res.status(200).json(info.filter( e => e.id === id))
     }
     else res.status(200).json({message : "no user with this id"})
    
@@ -76,8 +72,6 @@ app.put('/users/:id' , (req, res) => {
 
 app.use( (req, res ) => {
     res.status(404).send("<h1>LEAVE ME ALONE , THERE IS NO PAGE HERE</h1>")
-
-  
 })
 
 app.listen(PORT, () => {
