@@ -1,7 +1,7 @@
 import express from "express"
 import cors from 'cors'
 import * as dotenv from "dotenv"
-// import crypto from 'node:crypto'
+import crypto from 'node:crypto'
 
 dotenv.config()
 const app = express()
@@ -42,9 +42,9 @@ app.get('/users/:id' , (req, res) => {
 
 
 app.post('/users' , (req , res ) => {
-    const newUser = {...req.body ,id : crypto.randomUUID }
+    const newUser = req.body 
     
-    info.push(req.body)
+    info.push({...newUser,id : crypto.randomUUID()})
     res.status(201).json(newUser)
 
 })
@@ -57,5 +57,6 @@ app.use( (req, res ) => {
 
 app.listen(PORT, () => {
     console.log(`The server is up on http://localhost:${PORT}`)
+    
 })
 
