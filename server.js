@@ -52,7 +52,7 @@ app.post('/users' , (req , res ) => {
 
 })
 
-.app.put('/users/:id' , (req, res) => {
+app.put('/users/:id' , (req, res) => {
 
     const { id } = req.params
     const updateUser = req.body
