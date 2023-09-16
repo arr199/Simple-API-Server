@@ -37,9 +37,9 @@ app.get('/api/v1/prompt' , (req, res) => {
 app.post('/api/v1/prompt' , (req , resp ) => {
     const newUser = {...req.body , id : crypto.randomUUID}
     info.push(req.body)
+    res.status(201).json(newUser)
 
 })
-
 
 app.use( (req, res ) => {
     res.status(404).send("<h1>LEAVE ME ALONE , THERE IS NO PAGE HERE</h1>")
@@ -47,6 +47,5 @@ app.use( (req, res ) => {
 
 app.listen(PORT, () => {
     console.log(`The server is up on http://localhost:${PORT}`)
-
 })
 
