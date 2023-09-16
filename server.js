@@ -27,18 +27,15 @@ const info = [
 app.use(cors())
 app.use(express.json())
 app.get('/' , ( req , res ) => {
-    res.header('Access-Control-Allow-Origin' , "*")
-    res.send('Hello There')
 
+    res.send('Hello There')
 
 } )
 app.get('/api/v1/prompt' , (req, res) => {
-    res.header('Access-Control-Allow-Origin' , "*")
     res.status(201).json(info)
 }  )
 
 app.post('/api/v1/prompt' , (req , res ) => {
-    res.header('Access-Control-Allow-Origin' , "*")
     const newUser = req.body
     info.push(req.body)
     res.status(201).json(newUser)
