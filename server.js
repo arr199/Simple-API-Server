@@ -65,7 +65,7 @@ app.put('/users/:id' , (req, res) => {
         else return e
     } )
 
-    res.status(203).json({...updateUser, id : id})
+    res.status(203).json(info.filter( e => e.id === id))
 
 
 })
