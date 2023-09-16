@@ -31,12 +31,19 @@ app.get('/' , ( req , res ) => {
     res.send('Hello There')
 
 } )
-app.get('/api/v1/prompt' , (req, res) => {
+
+app.get('/users' , (req, res) => {
     res.status(201).json(info)
 }  )
 
-app.post('/api/v1/prompt' , (req , res ) => {
-    const newUser = req.body
+app.get('/users/:id' , (req, res) => {
+    res.status(201).json(info)
+}  )
+
+
+app.post('/users' , (req , res ) => {
+    const newUser = {...req.body ,id : crypto.randomUUID }
+    
     info.push(req.body)
     res.status(201).json(newUser)
 
