@@ -1,7 +1,7 @@
 import express from "express"
 import cors from 'cors'
 import * as dotenv from "dotenv"
-import crypto from 'node:crypto'
+// import crypto from 'node:crypto'
 
 dotenv.config()
 const app = express()
@@ -35,7 +35,7 @@ app.get('/api/v1/prompt' , (req, res) => {
 }  )
 
 app.post('/api/v1/prompt' , (req , res ) => {
-    const newUser = {...req.body , id : crypto.randomUUID}
+    const newUser = req.body
     info.push(req.body)
     res.status(201).json(newUser)
 
