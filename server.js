@@ -50,9 +50,9 @@ app.post('/users' , (req , res ) => {
 })
 
 app.put('/users/:id' , (req, res) => {
-
+    const { id } = req.params
     if (info.some( e => e.id === id)  ){
-        const { id } = req.params
+      
   
         const updateUser = req.body
          info = info.map( e => {
