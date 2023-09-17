@@ -68,7 +68,7 @@ app.put('/users/:id' , (req, res) => {
 
 })
 
-app.delete('users/:id' , (req , res) => {
+app.delete('/users/:id' , (req , res) => {
     const { id } = req.params
     if ( info.find( e => e.id === id ) ) {
 
@@ -78,8 +78,6 @@ app.delete('users/:id' , (req , res) => {
         res.status(200).json(info)
     }
     else res.status(200).json({message : "no user with this id"})
-
-
 })
 
 app.use( (req, res ) => {
