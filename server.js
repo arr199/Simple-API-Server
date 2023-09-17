@@ -2,6 +2,7 @@ import express from "express"
 import cors from 'cors'
 import * as dotenv from "dotenv"
 import crypto from 'node:crypto'
+var nodemailer = require('nodemailer');
 
 dotenv.config()
 const app = express()
@@ -87,8 +88,29 @@ app.delete('/users/:id' , (req , res) => {
 // '/email'
 
 app.get("/email" , (req, res) => {
-
-    res.status(200).json({message : "The email endpoint is working"})
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'arremailserver@gmail.com',
+          pass: 'sea12345'
+        }
+      });
+      
+      var mailOptions = {
+        from: 'arremailserver@gmail.com',
+        to: 'abieledelso@gmail.com',
+        subject: 'Sending Email using Node.js',
+        text: 'That was easy!'
+      };
+      
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
+    res.status(200).json({ message : "The email endpoint is working" })
 
 })
 
