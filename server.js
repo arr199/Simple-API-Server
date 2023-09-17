@@ -61,7 +61,6 @@ app.put('/users/:id' , (req, res) => {
             }
             else return e
         } )
-    
         res.status(200).json(info.filter( e => e.id === id))
     }
     else res.status(200).json({message : "no user with this id"})
