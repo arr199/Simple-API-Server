@@ -92,7 +92,7 @@ app.get("/email" , (req, res) => {
         service: 'gmail',
         auth: {
           user: 'arremailserver@gmail.com',
-          pass: 'sea12345'
+          pass: 'sea12345!'
         }
       });
       
