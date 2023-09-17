@@ -91,7 +91,6 @@ app.get("/email" , (req, res) => {
     var transporter = nodemailer.createTransport({
         service: 'smtp.gmail.com',
         port:465 , 
-        requireTLS: "Yes" , 
         auth: {
           user: 'arremailserver@gmail.com',
           pass: 'sea12345!'
