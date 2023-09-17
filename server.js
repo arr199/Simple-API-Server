@@ -2,7 +2,7 @@ import express from "express"
 import cors from 'cors'
 import * as dotenv from "dotenv"
 import crypto from 'node:crypto'
-var nodemailer = require('nodemailer');
+import nodemailer from 'nodemailer'
 
 dotenv.config()
 const app = express()
