@@ -89,7 +89,7 @@ app.delete('/users/:id' , (req , res) => {
 
 app.get("/email" , (req, res) => {
     var transporter = nodemailer.createTransport({
-        service: 'smtp.gmail.com',
+        service: 'gmail',
         auth: {
           user: 'arremailserver@gmail.com',
           pass: 'xagv zxdh icho gder'
