@@ -27,11 +27,16 @@ let info = [
 // middleware
 app.use(cors())
 app.use(express.json())
+
+/////    ENDPOINTS    //////
+
+// '/'   
 app.get('/' , ( req , res ) => {
     res.send('Hello There')
 
 } )
 
+// '/users'
 app.get('/users' , (req, res) => {
     res.status(201).json(info)
 }  )
@@ -79,10 +84,22 @@ app.delete('/users/:id' , (req , res) => {
     else res.status(200).json({message : "no user with this id"})
 })
 
+// '/email'
+
+app.get("/email" , (req, res) => {
+
+    res.status(200).json({message : "The email endpoint is working"})
+
+})
+
+
+// error handling
 app.use( (req, res ) => {
     
     res.status(404).send("<h1>LEAVE ME ALONE , THERE IS NO PAGE HERE</h1>")
 })
+
+// start server
 
 app.listen(PORT, () => {
     console.log(`The server is up on http://localhost:${PORT}`)
