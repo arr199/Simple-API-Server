@@ -79,7 +79,6 @@ app.delete('/users/:id' , (req , res) => {
 
         const usersIndex = info.findIndex( e =>  e.id === id)
         info.splice(usersIndex, 1)
-    
         res.status(200).json(info.find(e => e.id === id))
     }
     else res.status(200).json({message : "no user with this id"})
@@ -119,7 +118,6 @@ app.post("/email" , (req, res) => {
 
 // error handling
 app.use( (req, res ) => {
-    
     res.status(404).send("<h1>LEAVE ME ALONE , THERE IS NO PAGE HERE</h1>")
 })
 
