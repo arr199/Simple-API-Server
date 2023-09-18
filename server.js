@@ -78,8 +78,9 @@ app.delete('/users/:id' , (req , res) => {
     if ( info.find( e => e.id === id ) ) {
 
         const usersIndex = info.findIndex( e =>  e.id === id)
+        const deletedUser = info[usersIndex]
         info.splice(usersIndex, 1)
-        res.status(200).json(info.find(e => e.id === id))
+        res.status(200).json(deletedUser)
     }
     else res.status(200).json({message : "no user with this id"})
 })
@@ -111,7 +112,7 @@ app.post("/email" , (req, res) => {
           console.log('Email sent: ' + info.response);
         }
       });
-    res.status(200).json({ message : "The email was send " })
+    res.status(200).json({ message : "The email was sent" })
 
 })
 
