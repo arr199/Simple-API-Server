@@ -88,20 +88,19 @@ app.delete('/users/:id' , (req , res) => {
 // '/email'
 
 app.post("/email" , (req, res) => {
-    
     const { message } = req.body
 
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user: 'arremailserver@gmail.com',
-          pass: 'xagvzxdhichogder'
+          user: process.env.GMAIL_SERVER_USER,
+          pass: process.env.GMAIL_SERVER_PASS
         }
       });
       
       const mailOptions = {
         from: 'Arr Email Server',
-        to: 'abieledelso@gmail.com',
+        to:  process.env.GMAIL_USER,
         subject: 'Sending Email using Node.js',
         text: message 
       };
