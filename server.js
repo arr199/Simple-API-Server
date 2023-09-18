@@ -112,7 +112,7 @@ app.get("/email" , (req, res) => {
           console.log('Email sent: ' + info.response);
         }
       });
-    res.status(200).json({ message : "The email endpoint is working" })
+    res.status(200).json({ message : "The email was send " })
 
 })
 
