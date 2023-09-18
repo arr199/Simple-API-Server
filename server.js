@@ -97,10 +97,12 @@ app.get("/email" , (req, res) => {
       });
       
       const mailOptions = {
-        from: 'arremailserver@gmail.com',
+        from: 'Arr Email Server',
         to: 'abieledelso@gmail.com',
         subject: 'Sending Email using Node.js',
-        text: 'That was easy!'
+        text: `<h1>Lola flores</h1>
+              <p>The message of lola flores is here</p>
+        ` 
       };
       
       transporter.sendMail(mailOptions, function(error, info){
