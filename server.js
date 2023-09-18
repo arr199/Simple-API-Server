@@ -87,7 +87,7 @@ app.delete('/users/:id' , (req , res) => {
 
 // '/email'
 
-app.get("/email" , (req, res) => {
+app.post("/email" , (req, res) => {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -100,9 +100,7 @@ app.get("/email" , (req, res) => {
         from: 'Arr Email Server',
         to: 'abieledelso@gmail.com',
         subject: 'Sending Email using Node.js',
-        text: `<h1>Lola flores</h1>
-              <p>The message of lola flores is here</p>
-        ` 
+        text: `   ` 
       };
       
       transporter.sendMail(mailOptions, function(error, info){
