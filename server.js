@@ -6,6 +6,7 @@ import { usersRouter } from "./Routes/users"
 import { emailRouter } from "./Routes/email"
 import { rootRouter } from "./Routes/root"
 
+
 dotenv.config()
 const app = express()
 const PORT = process.env.PORT ?? 8080
@@ -27,11 +28,15 @@ export let info = [
     },
 ]
 
+
+
+
 // middleware
 app.use(cors())
 app.use(express.json())
 
 /////    ENDPOINTS    //////
+
 
 app.use('/' , rootRouter )
 

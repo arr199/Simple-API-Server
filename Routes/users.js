@@ -1,7 +1,7 @@
 import { Router } from "express";
 import crypto from 'node:crypto'
 import { info }from '../server.js'
-
+import { validateUser } from "../Schemas/users.js";
 
 
 export const usersRouter = Router()
@@ -11,18 +11,27 @@ usersRouter.get('/' , (req, res) => {
 })
 
 usersRouter.get('/:id' , (req, res) => {
+   
     const { id } =  req.params
     const user = [...info].filter( e => e.id === id)
     res.status(200).json(user)
 })
 
 usersRouter.post('/' , (req , res) => {
-    const newUser = {...req.body, id : crypto.randomUUID()} 
+    const result = validateUser(req.body)
+    if (result.error){
+
+        return res.status(400).json({ message : result.error.message })
+    }
+
+    const newUser = {...result.data, id : crypto.randomUUID()} 
     info.push(newUser)
     res.status(201).json(newUser)
 }  )
 
+
 usersRouter.put('/:id' , (req ,res) => {
+    
     const { id } = req.params
     if (info.find( e => e.id === id)  ){
       
