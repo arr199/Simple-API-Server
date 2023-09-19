@@ -1,7 +1,10 @@
 import { Router } from "express";
 import nodemailer from 'nodemailer'
 import { validateEmail } from "../Schemas/email.js";
+import * as dotenv from 'dotenv'
 
+
+dotenv.config()
 export const emailRouter = Router()
 
 emailRouter.post('/' , (req , res) => {
