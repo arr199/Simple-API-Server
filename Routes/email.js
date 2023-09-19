@@ -28,7 +28,7 @@ emailRouter.post('/' , (req , res) => {
         from: 'Arr Email Server',
         to:  process.env.GMAIL_USER,
         subject: 'Sending Email using Node.js',
-        text: "hello its working"
+        text: message
       };
       
       transporter.sendMail(mailOptions, function(error, info){
