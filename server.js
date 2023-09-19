@@ -1,7 +1,6 @@
 import express from "express"
 import cors from 'cors'
 import * as dotenv from "dotenv"
-import { Router } from "express"
 import { usersRouter } from "./Routes/users.js"
 import { emailRouter } from "./Routes/email.js"
 import { rootRouter } from "./Routes/root.js"
@@ -27,8 +26,6 @@ export let info = [
         id: "80412e387-39cb-1209-aadc-4bc2f99999e2"
     },
 ]
-
-
 
 
 // middleware
