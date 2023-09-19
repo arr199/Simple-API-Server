@@ -11,6 +11,7 @@ emailRouter.post('/' , (req , res) => {
 
         return res.status(400).json({ message : result.error.message })
     }
+    const { message } = result.data 
 
     const transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -23,7 +24,7 @@ emailRouter.post('/' , (req , res) => {
         from: 'Arr Email Server',
         to:  process.env.GMAIL_USER,
         subject: 'Sending Email using Node.js',
-        text: result.data.message
+        text: message
       };
       
       transporter.sendMail(mailOptions, function(error, info){
