@@ -8,6 +8,6 @@ const userSchema = z.object({
 })
 
 export function validateUser (object) {
-    return userSchema.safeParseAsync(object)
+    return userSchema.safeParse(object)
 
 }
