@@ -2,7 +2,7 @@ import * as z from 'zod'
 
 
 const emailSchema = z.object({
-    message: z.string()
+    message: z.string().maxLength(5)
 
 })
 
