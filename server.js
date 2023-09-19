@@ -2,9 +2,9 @@ import express from "express"
 import cors from 'cors'
 import * as dotenv from "dotenv"
 import { Router } from "express"
-import { usersRouter } from "./Routes/users"
-import { emailRouter } from "./Routes/email"
-import { rootRouter } from "./Routes/root"
+import { usersRouter } from "./Routes/users.js"
+import { emailRouter } from "./Routes/email.js"
+import { rootRouter } from "./Routes/root.js"
 
 
 dotenv.config()
