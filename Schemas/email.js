@@ -6,5 +6,5 @@ const emailSchema = z.object({
 })
 
 export function validateEmail(object) {
-    return emailSchema.safeParseAsync+(object)
+    return emailSchema.safeParseAsync(object)
 }
