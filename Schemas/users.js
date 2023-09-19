@@ -1,4 +1,4 @@
-import z  from 'zod'
+import  * as z  from 'zod'
 
 const userSchema = z.object({
     user : z.string().maxLength(3),
