@@ -20,7 +20,6 @@ usersRouter.get('/:id' , (req, res) => {
 usersRouter.post('/' , (req , res) => {
     const result = validateUser(req.body)
     if (result.error){
-
         return res.status(400).json({ message : result.error.message })
     }
 
