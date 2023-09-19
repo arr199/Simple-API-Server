@@ -1,13 +1,15 @@
 import express from "express"
 import cors from 'cors'
 import * as dotenv from "dotenv"
-import crypto from 'node:crypto'
-import nodemailer from 'nodemailer'
+import { Router } from "express"
+import { usersRouter } from "./Routes/users"
+import { emailRouter } from "./Routes/email"
+import { rootRouter } from "./Routes/root"
 
 dotenv.config()
 const app = express()
 const PORT = process.env.PORT ?? 8080
-let info = [
+export let info = [
     {  
         username : "lola" , 
         age : 22 ,
@@ -31,91 +33,11 @@ app.use(express.json())
 
 /////    ENDPOINTS    //////
 
-// '/'   
-app.get('/' , ( req , res ) => {
-    res.send('Hello There')
+app.use('/' , rootRouter )
 
-} )
+app.use('/users' , usersRouter)
 
-// '/users'
-app.get('/users' , (req, res) => {
-    res.status(201).json(info)
-}  )
-
-app.get('/users/:id' , (req, res) => {
-    const { id } =  req.params
-    const user = [...info].filter( e => e.id === id)
-    res.status(200).json(user)
-}  )
-
-
-app.post('/users' , (req , res ) => {
-    const newUser = {...req.body, id : crypto.randomUUID()} 
-    info.push(newUser)
-    res.status(201).json(newUser)
-
-})
-
-app.put('/users/:id' , (req, res) => {
-    const { id } = req.params
-    if (info.find( e => e.id === id)  ){
-      
-        const updateUser = req.body
-         info = info.map( e => {
-            if ( e.id === id){
-                return {...updateUser , id : e.id}
-            }
-            else return e
-        } )
-        res.status(200).json(info.filter( e => e.id === id))
-    }
-    else res.status(200).json({message : "no user with this id"})
-
-})
-
-app.delete('/users/:id' , (req , res) => {
-    const { id } = req.params
-    if ( info.find( e => e.id === id ) ) {
-
-        const usersIndex = info.findIndex( e =>  e.id === id)
-        const deletedUser = info[usersIndex]
-        info.splice(usersIndex, 1)
-        res.status(200).json(deletedUser)
-    }
-    else res.status(200).json({message : "no user with this id"})
-})
-
-// '/email'
-
-app.post("/email" , (req, res) => {
-    const { message } = req.body
-
-    const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-          user: process.env.GMAIL_SERVER_USER,
-          pass: process.env.GMAIL_SERVER_PASS
-        }
-      });
-      
-      const mailOptions = {
-        from: 'Arr Email Server',
-        to:  process.env.GMAIL_USER,
-        subject: 'Sending Email using Node.js',
-        text: message 
-      };
-      
-      transporter.sendMail(mailOptions, function(error, info){
-        if (error) {
-          console.log(error);
-        } else {
-          console.log('Email sent: ' + info.response);
-        }
-      });
-    res.status(200).json({ message : "The email was sent" })
-
-})
-
+app.use('/email' , emailRouter)
 
 // error handling
 app.use( (req, res ) => {
@@ -123,7 +45,6 @@ app.use( (req, res ) => {
 })
 
 // start server
-
 app.listen(PORT, () => {
     console.log(`The server is up on http://localhost:${PORT}`)
     
