@@ -1,10 +1,17 @@
 import { Router } from "express";
 import nodemailer from 'nodemailer'
+import { validateEmail } from "../Schemas/email";
 
 export const emailRouter = Router()
 
 emailRouter.post('/' , (req , res) => {
-    const { message } = req.body
+ 
+    const result = validateEmail(req.body)
+    if (result.error) {
+
+        return res.status(400).json({ message : result.error.message })
+    }
+    
 
     const transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -17,7 +24,7 @@ emailRouter.post('/' , (req , res) => {
         from: 'Arr Email Server',
         to:  process.env.GMAIL_USER,
         subject: 'Sending Email using Node.js',
-        text: message 
+        text: result.data
       };
       
       transporter.sendMail(mailOptions, function(error, info){
