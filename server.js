@@ -6,7 +6,12 @@ import { emailRouter } from "./Routes/email.js"
 import { rootRouter } from "./Routes/root.js"
 import { codyRouter } from "./Routes/cody.js"
 
+
 dotenv.config()
+
+
+
+  
 const app = express()
 const PORT = process.env.PORT ?? 8080
 export let info = [
@@ -48,4 +53,5 @@ app.listen(PORT, () => {
     console.log(`The server is up on http://localhost:${PORT}`)
     
 })
+
 

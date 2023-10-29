@@ -1,21 +1,21 @@
 import { Router } from "express";
 import  * as dotenv from "dotenv"
-import { MongoClient , ObjectId, ServerApiVersion } from "mongodb";
+import {  ObjectId  ,MongoClient , ServerApiVersion} from "mongodb";
+
 
 dotenv.config()
 
 // CONNECT TO MONGO DB 
 
+const client = new MongoClient(process.env.MONGO_URI, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  }
+})
 
 async function run() {
-  const client = new MongoClient(process.env.MONGO_URI, {
-    serverApi: {
-      version: ServerApiVersion.v1,
-      strict: true,
-      deprecationErrors: true,
-    }
-  })
- 
   try {
     // Connect the client to the server	(optional starting in v4.7)
       await client.connect();
@@ -31,13 +31,6 @@ run().catch(console.dir);
 
 // ADD LINK TO THE DB
 async function addLink(link) {
-  const client = new MongoClient(process.env.MONGO_URI, {
-    serverApi: {
-      version: ServerApiVersion.v1,
-      strict: true,
-      deprecationErrors: true,
-    }
-  })
   
   await client.connect()
   // Get the current date
@@ -51,14 +44,6 @@ async function addLink(link) {
 }
 //  GET THE LINKS FROM THE DB
 async function getLink(id) {
-  const client = new MongoClient(process.env.MONGO_URI, {
-    serverApi: {
-      version: ServerApiVersion.v1,
-      strict: true,
-      deprecationErrors: true,
-    }
-  })
-  
     await client.connect()
     const data =  await client.db("cody-links-shortener").collection("links").findOne({ _id :  new ObjectId(id)}  ) ;
     return data
