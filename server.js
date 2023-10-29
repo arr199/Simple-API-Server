@@ -4,7 +4,7 @@ import * as dotenv from "dotenv"
 import { usersRouter } from "./Routes/users.js"
 import { emailRouter } from "./Routes/email.js"
 import { rootRouter } from "./Routes/root.js"
-
+import { codyRouter } from "./Routes/cody.js"
 
 dotenv.config()
 const app = express()
@@ -27,23 +27,20 @@ export let info = [
     },
 ]
 
-
 // middleware
 app.use(cors())
 app.use(express.json())
 
 /////    ENDPOINTS    //////
 
-
 app.use('/' , rootRouter )
-
 app.use('/users' , usersRouter)
-
 app.use('/email' , emailRouter)
+app.use("/cody" , codyRouter)
 
 // error handling
 app.use( (req, res ) => {
-    res.status(404).send("<h1>LEAVE ME ALONE , THERE IS NO PAGE HERE</h1>")
+    res.status(404).send("<h1>LEAVE ME ALONE! , THERE IS NOTHING HERE</h1>")
 })
 
 // start server
