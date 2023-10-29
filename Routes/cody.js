@@ -1,9 +1,8 @@
 import { Router } from "express";
-import  * as dotenv from "dotenv"
 import {  ObjectId  ,MongoClient , ServerApiVersion} from "mongodb";
 
 
-dotenv.config()
+
 
 // CONNECT TO MONGO DB 
 
