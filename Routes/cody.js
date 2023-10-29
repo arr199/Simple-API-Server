@@ -8,7 +8,7 @@ dotenv.config()
 
 
 async function run() {
-  const client = new MongoClient("mongodb+srv://abieledelso95:sea12345@cluster0.e2yqgaj.mongodb.net/?retryWrites=true&w=majority", {
+  const client = new MongoClient(process.env.MONGO_URI, {
     serverApi: {
       version: ServerApiVersion.v1,
       strict: true,
@@ -52,6 +52,9 @@ export const codyRouter = Router()
 
 codyRouter.post("/" , (req, res) => {
     const { content } = req.body
+    
+    console.log("POST REQUEST INCOMING")
+    console.log("content : " , content)
     //  IF BODY IS EMPTY
     if ( content === undefined ) return res.status(400).json({message : "no content"})
     // ADD LINK TO THE DB
