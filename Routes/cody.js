@@ -5,18 +5,20 @@ import { MongoClient , ObjectId, ServerApiVersion } from "mongodb";
 dotenv.config()
 
 // CONNECT TO MONGO DB 
-const client = new MongoClient(process.env.MONGO_URI, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  }
-});
+
 
 async function run() {
+  const client = new MongoClient("mongodb+srv://abieledelso95:sea12345@cluster0.e2yqgaj.mongodb.net/?retryWrites=true&w=majority", {
+    serverApi: {
+      version: ServerApiVersion.v1,
+      strict: true,
+      deprecationErrors: true,
+    }
+  })
+ 
   try {
     // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
+      await client.connect();
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
