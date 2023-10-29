@@ -31,6 +31,14 @@ run().catch(console.dir);
 
 // ADD LINK TO THE DB
 async function addLink(link) {
+  const client = new MongoClient(process.env.MONGO_URI, {
+    serverApi: {
+      version: ServerApiVersion.v1,
+      strict: true,
+      deprecationErrors: true,
+    }
+  })
+  
   await client.connect()
   // Get the current date
   const currentDate = new Date();
@@ -43,6 +51,14 @@ async function addLink(link) {
 }
 //  GET THE LINKS FROM THE DB
 async function getLink(id) {
+  const client = new MongoClient(process.env.MONGO_URI, {
+    serverApi: {
+      version: ServerApiVersion.v1,
+      strict: true,
+      deprecationErrors: true,
+    }
+  })
+  
     await client.connect()
     const data =  await client.db("cody-links-shortener").collection("links").findOne({ _id :  new ObjectId(id)}  ) ;
     return data
