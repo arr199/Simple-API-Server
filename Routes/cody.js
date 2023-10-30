@@ -1,11 +1,7 @@
 import { Router } from "express";
 import {  ObjectId  ,MongoClient , ServerApiVersion} from "mongodb";
 
-
-
-
 // CONNECT TO MONGO DB 
-
 const client = new MongoClient(process.env.MONGO_URI, {
   serverApi: {
     version: ServerApiVersion.v1,
@@ -17,23 +13,23 @@ const client = new MongoClient(process.env.MONGO_URI, {
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
-      await client.connect();
+      await client.connect()
     // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
+    await client.db("admin").command({ ping: 1 })
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
   } finally {
     // Ensures that the client will close when you finish/error
-    await client.close();
+    await client.close()
   }
 }
-run().catch(console.dir);
+run().catch(console.dir)
 
 // ADD LINK TO THE DB
 async function addLink(link) {
   
   await client.connect()
   // Get the current date
-  const currentDate = new Date();
+  const currentDate = new Date()
   // Calculate the date one month from now
   const oneMonthFromNow = new Date(currentDate)
   oneMonthFromNow.setMonth(currentDate.getMonth() + 1)
@@ -81,8 +77,3 @@ codyRouter.get("/:id" , (req, res) => {
       
     })
 })
-
-
-
-
-

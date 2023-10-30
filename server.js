@@ -6,14 +6,10 @@ import { emailRouter } from "./Routes/email.js"
 import { rootRouter } from "./Routes/root.js"
 import { codyRouter } from "./Routes/cody.js"
 
-
 dotenv.config()
-
-
-
-  
 const app = express()
 const PORT = process.env.PORT ?? 8080
+
 export let info = [
     {  
         username : "lola" , 
@@ -32,23 +28,24 @@ export let info = [
     },
 ]
 
-// middleware
+// MIDDLEWARE
+
 app.use(cors())
 app.use(express.json())
 
-/////    ENDPOINTS    //////
+/////   ROUTES   //////
 
 app.use('/' , rootRouter )
 app.use('/users' , usersRouter)
 app.use('/email' , emailRouter)
 app.use("/cody" , codyRouter)
 
-// error handling
+// ERROR HANDLING
 app.use( (req, res ) => {
     res.status(404).send("<h1>LEAVE ME ALONE! , THERE IS NOTHING HERE</h1>")
 })
 
-// start server
+// START SERVER
 app.listen(PORT, () => {
     console.log(`The server is up on http://localhost:${PORT}`)
     
