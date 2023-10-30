@@ -60,8 +60,6 @@ codyRouter.post("/" , (req, res) => {
 
     }).catch( err => {
         res.status(400).json({message : "Could not add link to database" , error : err , status : "error"})
-    }).finally( () => {
-      
     })
 })
 
@@ -73,7 +71,5 @@ codyRouter.get("/:id" , (req, res) => {
     })
     .catch( err => {
         res.status(400).json({message : "Could not find the link in the database" , error : err , status : "error"})
-    }).finally( () => {
-      
     })
 })
