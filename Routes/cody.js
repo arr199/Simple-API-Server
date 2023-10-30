@@ -49,8 +49,6 @@ export const codyRouter = Router()
 codyRouter.post("/" , (req, res) => {
     const { content } = req.body
     
-    console.log("POST REQUEST INCOMING")
-    console.log("content : " , content)
     //  IF BODY IS EMPTY
     if ( content === undefined ) return res.status(400).json({message : "no content"})
     // ADD LINK TO THE DB
