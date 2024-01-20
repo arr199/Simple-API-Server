@@ -47,7 +47,7 @@ app.use( (req, res ) => {
 
 // START SERVER
 app.listen(PORT, () => {
-    console.log(`The server is up on http://localhost:${PORT}`)
+    console.log(`The server is up on ${process.env.PUBLIC_SERVER_URL}`)
     
 })
 
